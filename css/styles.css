@@ -1,0 +1,189 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    font-weight: 600;
+    color: #434344;
+
+    background-color: #CFD0CF;
+
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+
+.title {
+    font-size: 42px;
+    line-height: 47px;
+    text-align: center;
+
+    margin: 40px auto;
+}
+
+.cards {
+    width: calc(130px * 4 + 25px * 3);
+    display: grid;
+
+    grid-template-columns: repeat(4, 130px);
+    grid-template-rows: repeat(3, 130px);
+
+    grid-gap: 25px;
+
+    margin: 0 auto 30px;
+
+    perspective: 600px;
+}
+
+.cards__item {
+    width: 130px;
+    height: 130px;
+
+    position: relative;
+
+    border-radius: 9px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+
+    transform-style: preserve-3d;
+
+    transition: transform 300ms linear;
+
+    cursor: pointer;
+}
+
+.cards__item.opened {
+    transform: rotateY(180deg);
+}
+
+.cards__front,
+.cards__back {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    border-radius: inherit;
+}
+
+
+.cards__back {	
+    background: linear-gradient(to right top, #22AB93, #19668D);
+
+    border: 5px solid #FFF;
+	
+	backface-visibility: hidden;
+}
+
+.cards__item:hover .cards__back {
+    background: linear-gradient(to right top, #1fcdaf, #1b82b6);
+}
+
+.cards__front {
+    background-color: #FFF;
+
+    transform: rotateY(180deg);
+
+    backface-visibility: hidden;
+}
+
+.cards__item.correct .cards__front {
+    background-color: #5AD66F;
+}
+
+.cards__item.wrong .cards__front {
+    background-color: #F44336;
+}
+
+.cards__emoji {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 75px;
+}
+
+.timer {
+	display: flex;
+	justify-content: center;
+    font-size: 32px;
+    line-height: 36px;
+
+    text-align: center;
+}
+
+.timer__minutes::after {
+	content: ':';
+}
+
+
+.lightroom {
+    display: none;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.lightroom.visible {
+    display: block;
+}
+
+.lightroom__window {
+    min-width: 350px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: #FFFFFF;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.lightroom__title {
+    font-size: 48px;
+
+    margin-bottom: 40px;
+}
+
+.lightroom__button {
+    font-size: 20px;
+    color: #FFFFFF;
+
+    border: none;
+    border-radius: 9px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+
+
+    background: linear-gradient(to left, #1fcdaf, #1b82b6);
+
+    padding: 0.5em 1.5em;
+
+    outline: none;
+    cursor: pointer;
+}
+
+.lightroom__button.active {
+    box-shadow: inset 2px 1px 8px rgba(0, 0, 0, 0.5);
+}
